@@ -23,7 +23,7 @@ def new_project(proj_name, proj_type, git_target):
 
         print('finish gerrit')
 
-    if 'github' in git_targets:
+    if 'github' in git_targets and proj_type == 'public':
         print('\n--- github ---')
         gh = Github()
         code, msg = gh.create_project(proj_name)
