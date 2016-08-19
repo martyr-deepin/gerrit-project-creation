@@ -32,6 +32,7 @@ class Gitlab(Singleton):
 
         d = {
             'name': proj_name,
+            'path': proj_name,
             'description': description,
             'namespace_id': DEEPIN_NS,
             'visibility_level': 10
