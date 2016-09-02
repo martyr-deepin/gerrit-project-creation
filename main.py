@@ -8,11 +8,14 @@ from lib.gitlab import Gitlab
 from lib.github import Github
 
 
-def new_project(proj_name, proj_type, git_target):
+def new_project(proj_name, proj_type, git_target=None):
 
-    git_targets = git_target.split(',')
+    all_target = True
+    if git_target:
+        all_target = False
+        git_targets = git_target.split(',')
 
-    if 'gerrit' in git_targets:
+    if all_target or 'gerrit' in git_targets:
         g = Gerrit()
         print('\n--- gerrit ---')
         code, msg = g.create_project(proj_name, proj_type)
@@ -20,10 +23,10 @@ def new_project(proj_name, proj_type, git_target):
         if not str(code).startswith('2'):
             print(msg)
             print('E: failed')
+        else:
+            print('finish gerrit')
 
-        print('finish gerrit')
-
-    if 'github' in git_targets and proj_type == 'public':
+    if (all_target or 'github' in git_targets) and proj_type == 'public':
         print('\n--- github ---')
         gh = Github()
         code, msg = gh.create_project(proj_name)
@@ -31,10 +34,10 @@ def new_project(proj_name, proj_type, git_target):
         if not str(code).startswith('2'):
             print(msg)
             print('E: failed')
+        else:
+            print('finish github')
 
-        print('finish github')
-
-    if 'gitlab' in git_targets:
+    if all_target or 'gitlab' in git_targets:
         print('\n--- gitlab ---')
         gl = Gitlab()
         code, msg = gl.create_project(proj_name)
@@ -42,8 +45,8 @@ def new_project(proj_name, proj_type, git_target):
         if not str(code).startswith('2'):
             print(msg)
             print('E: failed')
-
-        print('finish gitlab')
+        else:
+            print('finish gitlab')
 
 
 if __name__ == '__main__':
