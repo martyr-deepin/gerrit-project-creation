@@ -1,0 +1,9 @@
+[gerrit]
+username=xxx
+password=xxx
+
+[gitlab]
+token=xxx
+
+[github]
+token=xxx
