@@ -36,6 +36,7 @@ def new_project(proj_name, proj_type, git_target=None):
             print(msg)
             print('E: failed')
         else:
+            print(msg)
             print('finish github')
 
     if all_target or 'gitlab' in git_targets:
