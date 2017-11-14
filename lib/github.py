@@ -59,7 +59,4 @@ class Github(Singleton):
         }
 
         r = requests.put(url, data=json.dumps(d), headers=self.basic_headers)
-        print('+++++++++++')
-        print(r.json())
-        print('+++++++++++')
         return r.status_code, r.text

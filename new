@@ -33,9 +33,11 @@ def new_project(proj_name, proj_type, git_target=None):
         code, msg = gh.create_project(proj_name)
 
         if not str(code).startswith('2'):
+            print("++++")
             print(msg)
             print('E: failed')
         else:
+            print("++++")
             print(msg)
             print('finish github')
 
