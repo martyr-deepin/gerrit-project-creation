@@ -1,7 +1,7 @@
 import json
 
 import requests
-from requests.auth import HTTPDigestAuth
+from requests.auth import HTTPBasicAuth
 
 from utils.config import Config
 from utils.singleton import Singleton
@@ -17,7 +17,7 @@ class Gerrit(Singleton):
         self._init = True
 
         c = Config()
-        self.auth = HTTPDigestAuth(c.data('gerrit', 'username'), c.data('gerrit', 'password'))
+        self.auth = HTTPBasicAuth(c.data('gerrit', 'username'), c.data('gerrit', 'password'))
 
 
     def create_project(self, proj_name, proj_type):
